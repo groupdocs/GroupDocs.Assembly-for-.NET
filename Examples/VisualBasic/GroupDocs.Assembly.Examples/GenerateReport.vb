@@ -13,7 +13,7 @@ Namespace GroupDocs.AssemblyExamples
     Public NotInheritable Class GenerateReport
         Private Sub New()
         End Sub
-       
+
         Public Shared Sub GenerateBubbleChart(strDocumentFormat As String, isDatabase As Boolean, isDataSet As Boolean, isDataSourceXML As Boolean, isJson As Boolean)
             Select Case strDocumentFormat
                 Case "document"
@@ -3925,7 +3925,214 @@ Namespace GroupDocs.AssemblyExamples
             'ExEnd:GeneratingReportbyRecursivelyandLazilyAccessingtheData
         End Sub
 
+
+        Public Shared Sub GenerateReportUsingMultipleDS(strDocumentFormat As String)
+            If strDocumentFormat = "document" Then
+                'ExStart:GeneratingReportUsingMultipleDataSourcesdocumentprocessing
+                'Setting up source open document template
+                Const strDocumentTemplate As [String] = "Word Templates/Multiple DS.odt"
+                'Setting up destination open document report 
+                Const strDocumentReport As [String] = "Word Reports/Multiple DS.odt"
+                Try
+                    'Instantiate DocumentAssembler class
+                    Dim assembler As New DocumentAssembler()
+                    'Create an array of data source objects
+                    Dim dataSourceObj As Object() = New Object() {DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson()}
+                    'Create an array of data source string
+                    Dim dataSourceString As String() = New String() {"ds", "products"}
+
+                    'Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString)
+                Catch ex As Exception
+                    Console.WriteLine(ex.Message)
+                    'ExEnd:GeneratingReportUsingMultipleDataSourcesdocumentprocessing
+                End Try
+            ElseIf strDocumentFormat = "spreadsheet" Then
+                'ExStart:GeneratingReportUsingMultipleDataSourcesspreadsheet
+                'Setting up source open document template
+                Const strDocumentTemplate As [String] = "Spreadsheet Templates/Multiple DS.ods"
+                'Setting up destination open document report 
+                Const strDocumentReport As [String] = "Spreadsheet Reports/Multiple DS.ods"
+                Try
+                    'Instantiate DocumentAssembler class
+                    Dim assembler As New DocumentAssembler()
+                    'Create an array of data source objects
+                    Dim dataSourceObj As Object() = New Object() {DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson()}
+                    'Create an array of data source string
+                    Dim dataSourceString As String() = New String() {"ds", "products"}
+
+                    'Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString)
+                Catch ex As Exception
+                    Console.WriteLine(ex.Message)
+                    'ExEnd:GeneratingReportUsingMultipleDataSourcesspreadsheet
+                End Try
+            ElseIf strDocumentFormat = "presentation" Then
+                'ExStart:GeneratingReportUsingMultipleDataSourcespresentation
+                'Setting up source open document template
+                Const strDocumentTemplate As [String] = "Presentation Templates/Multiple DS.odp"
+                'Setting up destination open document report 
+                Const strDocumentReport As [String] = "Presentation Reports/Multiple DS.odp"
+                Try
+                    'Instantiate DocumentAssembler class
+                    Dim assembler As New DocumentAssembler()
+                    'Create an array of data source objects
+                    Dim dataSourceObj As Object() = New Object() {DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson()}
+                    'Create an array of data source string
+                    Dim dataSourceString As String() = New String() {"ds", "products"}
+
+                    'Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString)
+                Catch ex As Exception
+                    Console.WriteLine(ex.Message)
+                    'ExEnd:GeneratingReportUsingMultipleDataSourcespresentation
+                End Try
+            End If
+
+        End Sub
+
+
+        Public Shared Sub TemplateSyntaxFormatting()
+            'ExStart:TemplateSyntaxFormatting 
+            'Setting up source open document template
+            Const strDocumentTemplate As [String] = "Word Templates/String_Numeric_Formatting.odt"
+            'Setting up destination open document report 
+            Const strDocumentReport As [String] = "Word Reports/String_Numeric_Formatting Report.odt"
+            Try
+                'Instantiate DocumentAssembler class
+                Dim assembler As New DocumentAssembler()
+                'Call AssembleDocument to generate   Report in open document format
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetOrdersData(), "orders")
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
+            'ExEnd:TemplateSyntaxFormatting 
+        End Sub
+        Public Shared Sub OuterDocumentInsertion()
+            'ExStart:OuterDocumentInsertion
+            'Setting up source open document template
+            Const strDocumentTemplate As [String] = "Word Templates/OuterDocInsertion.odt"
+            'Setting up destination open document report 
+            Const strDocumentReport As [String] = "Word Reports/OuterDocInsertion Report.odt"
+            Try
+                'Instantiate DocumentAssembler class
+                Dim assembler As New DocumentAssembler()
+                'Call AssembleDocument to generate  Report in open document format
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetCustomerData(), "customer")
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
+            'ExEnd:OuterDocumentInsertion
+        End Sub
+        Public Shared Sub AddBarCodes(strDocumentFormat As String)
+            Select Case strDocumentFormat
+                Case "document"
+                    'ExStart:AddBarCodesDocumentProcessingFormat
+                    'Setting up source open document template
+                    Const strDocumentTemplate As [String] = "Word Templates/Barcode.docx"
+                    'Setting up destination open document report 
+                    Const strDocumentReport As [String] = "Word Reports/Barcode.docx"
+                    Try
+                        'Instantiate DocumentAssembler class
+                        Dim assembler As New DocumentAssembler()
+                        'Call AssembleDocument to generate   Report in open document format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetCustomerData(), "customer")
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                    'ExEnd:AddBarCodesDocumentProcessingFormat 
+                    Exit Select
+
+                Case "spreadsheet"
+                    'ExStart:AddBarCodesSpreadsheet
+                    'Setting up source open spreadsheet template
+                    Const strSpreadsheetTemplate As [String] = "Spreadsheet Templates/Barcode.xlsx"
+                    'Setting up destination open spreadsheet report 
+                    Const strSpreadsheetReport As [String] = "Spreadsheet Reports/Barcode.xlsx"
+                    Try
+                        'Instantiate DocumentAssembler class
+                        Dim assembler As New DocumentAssembler()
+                        'Call AssembleDocument to generate   Report in open spreadsheet format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strSpreadsheetTemplate), CommonUtilities.SetDestinationDocument(strSpreadsheetReport), DataLayer.GetCustomerData(), "customer")
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                    'ExEnd:AddBarCodesSpreadsheet 
+                    Exit Select
+
+                Case "presentation"
+                    'ExStart:AddBarCodesPowerPoint
+                    'Setting up source open presentation template
+                    Const strPresentationTemplate As [String] = "Presentation Templates/Barcode.pptx"
+                    'Setting up destination open presentation report 
+                    Const strPresentationReport As [String] = "Presentation Reports/Barcode.pptx"
+                    Try
+                        'Instantiate DocumentAssembler class
+                        Dim assembler As New DocumentAssembler()
+                        'Call AssembleDocument to generate Report in open presentation format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strPresentationTemplate), CommonUtilities.SetDestinationDocument(strPresentationReport), DataLayer.GetCustomerData(), "customer")
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                    'ExEnd:AddBarCodesPowerPoint 
+                    Exit Select
+            End Select
+        End Sub
+
+
+        ''' <summary>
+        ''' Update word processing documents fields while assembling 
+        ''' </summary>
+        ''' <param name="documentType"></param>
+        Public Shared Sub UpdateWordDocFields(documentType As String)
+
+            If documentType = "document" Then
+                'ExStart:UpdateWordDocFields
+                'Setting up source document template
+                Const strDocumentTemplate As [String] = "Word Templates/Update_Field_XML.docx"
+                'Setting up destination document report 
+                Const strDocumentReport As [String] = "Word Reports/Update_Field_XML Report.docx"
+                Dim assembler As New DocumentAssembler()
+                assembler.Options = assembler.Options Or DocumentAssemblyOptions.UpdateFieldsAndFormulas
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds")
+                'ExEnd:UpdateWordDocFields
+            ElseIf documentType = "spreadsheet" Then
+                'ExStart:updateformula
+                'Setting up source document template
+                Const strDocumentTemplate As [String] = "Spreadsheet Templates/Update-Fomula.xlsx"
+                'Setting up destination document report 
+                Const strDocumentReport As [String] = "Spreadsheet Reports/Update-Fomula Report.xlsx"
+                Dim assembler As New DocumentAssembler()
+                assembler.Options = assembler.Options Or DocumentAssemblyOptions.UpdateFieldsAndFormulas
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds")
+                'ExEnd:updateformula
+            End If
+
+        End Sub
+
+        ''' <summary>
+        ''' Support for Analogue of Microsoft Word NEXT Field
+        ''' </summary>
+        Public Shared Sub NextIteration()
+            'ExStart:nextiteration
+            'Setting up source document template
+            Const strDocumentTemplate As [String] = "Word Templates/Using Next.docx"
+            'Setting up destination document report
+            Const strDocumentReport As [String] = "Word Reports/Using Next Report.docx"
+            Try
+                'Instantiate DocumentAssembler class
+                Dim assembler As New DocumentAssembler()
+                'Call AssembleDocument to generate Report 
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds")
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
+            'ExEnd:nextiteration
+        End Sub
+
+
+
     End Class
 End Namespace
 
- 
+

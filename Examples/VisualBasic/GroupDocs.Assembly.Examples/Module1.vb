@@ -201,6 +201,47 @@ Namespace GroupDocs.AssemblyExamples
             'GenerateReport.GenerateReportLazilyAndRecursively()
             '#End Region
 
+            '#region Generating Report using multiple data sources
+
+            'Generate a report using multiple data sources in document processing format
+            'GenerateReport.GenerateReportUsingMultipleDS("document")
+            'Generate a report using multiple data sources in spreadsheet format
+            'GenerateReport.GenerateReportUsingMultipleDS("spreadsheet")
+            'Generate a report using multiple data sources in presentation format
+            'GenerateReport.GenerateReportUsingMultipleDS("presentation")
+
+            '#End Region
+
+
+            'Region "Template Syntax Formatting"
+
+            'Generate document processing formatted reports with desired string or numeric format
+            'GenerateReport.TemplateSyntaxFormatting()
+
+            'End Region
+
+            'Region "Insert Outer Documents"
+
+            'Outer document insertion in a report
+            'GenerateReport.OuterDocumentInsertion()
+
+            'End Region
+
+            'Region "Barcode Insertion"
+
+            'add barcode in word processing documents
+            'GenerateReport.AddBarCodes("document")
+            'add barcode in spreadsheet documents
+            'GenerateReport.AddBarCodes("spreadsheet")
+            'add barcode in persentation documents 
+            'GenerateReport.AddBarCodes("presentation")
+
+            'End Region
+            'Update fields/formulas in word processing or spreadsheet documents
+            'GenerateReport.UpdateWordDocFields("spreadsheet")
+            'Use of Next keyword in template syntax
+            'GenerateReport.NextIteration()
+
         End Sub
 
     End Module

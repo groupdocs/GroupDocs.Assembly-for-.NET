@@ -75,7 +75,7 @@ namespace GroupDocs.AssemblyExamples
                             Console.WriteLine(ex.Message);
                         }
                         //ExEnd:GenerateBubbleChartFromXMLinOpenDocumentProcessingFormat
-                        
+
                     }
                     else if (isJson)
                     {
@@ -3807,7 +3807,7 @@ namespace GroupDocs.AssemblyExamples
                     }
                     else if (isDataSet)
                     {
-                       //ExStart:GenerateNumberedListFromDataSetinOpenDocumentProcessingFormat
+                        //ExStart:GenerateNumberedListFromDataSetinOpenDocumentProcessingFormat
                         //Setting up source open document template
                         const String strDocumentTemplate = "Word Templates/Numbered List_OpenDocument.odt";
                         //Setting up destination open document report 
@@ -5058,5 +5058,253 @@ namespace GroupDocs.AssemblyExamples
             }
             //ExEnd:GeneratingReportbyRecursivelyandLazilyAccessingtheData
         }
+        public static void GenerateReportUsingMultipleDS(string strDocumentFormat)
+        {
+            if (strDocumentFormat == "document")
+            {
+                //ExStart:GeneratingReportUsingMultipleDataSourcesdocumentprocessing
+                //Setting up source open document template
+                const String strDocumentTemplate = "Word Templates/Multiple DS.odt";
+                //Setting up destination open document report 
+                const String strDocumentReport = "Word Reports/Multiple DS.odt";
+                try
+                {
+                    //Instantiate DocumentAssembler class
+                    DocumentAssembler assembler = new DocumentAssembler();
+                    //Create an array of data source objects
+                    object[] dataSourceObj = new object[] { DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson() };
+                    //Create an array of data source string
+                    string[] dataSourceString = new string[] { "ds", "products" };
+
+                    //Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                //ExEnd:GeneratingReportUsingMultipleDataSourcesdocumentprocessing
+            }
+            else if (strDocumentFormat == "spreadsheet")
+            {
+                //ExStart:GeneratingReportUsingMultipleDataSourcesspreadsheet
+                //Setting up source open document template
+                const String strDocumentTemplate = "Spreadsheet Templates/Multiple DS.ods";
+                //Setting up destination open document report 
+                const String strDocumentReport = "Spreadsheet Reports/Multiple DS.ods";
+                try
+                {
+                    //Instantiate DocumentAssembler class
+                    DocumentAssembler assembler = new DocumentAssembler();
+                    //Create an array of data source objects
+                    object[] dataSourceObj = new object[] { DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson() };
+                    //Create an array of data source string
+                    string[] dataSourceString = new string[] { "ds", "products" };
+
+                    //Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                //ExEnd:GeneratingReportUsingMultipleDataSourcesspreadsheet
+            }
+            else if (strDocumentFormat == "presentation")
+            {
+                //ExStart:GeneratingReportUsingMultipleDataSourcespresentation
+                //Setting up source open document template
+                const String strDocumentTemplate = "Presentation Templates/Multiple DS.odp";
+                //Setting up destination open document report 
+                const String strDocumentReport = "Presentation Reports/Multiple DS.odp";
+                try
+                {
+                    //Instantiate DocumentAssembler class
+                    DocumentAssembler assembler = new DocumentAssembler();
+                    //Create an array of data source objects
+                    object[] dataSourceObj = new object[] { DataLayer.GetAllDataFromXML(), DataLayer.GetProductsDataJson() };
+                    //Create an array of data source string
+                    string[] dataSourceString = new string[] { "ds", "products" };
+
+                    //Call AssembleDocument to generate report
+                    assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), dataSourceObj, dataSourceString);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                //ExEnd:GeneratingReportUsingMultipleDataSourcespresentation
+            }
+
+        }
+        public static void TemplateSyntaxFormatting()
+        {
+            //ExStart:TemplateSyntaxFormatting 
+            //Setting up source open document template
+            const String strDocumentTemplate = "Word Templates/String_Numeric_Formatting.odt";
+            //Setting up destination open document report 
+            const String strDocumentReport = "Word Reports/String_Numeric_Formatting Report.odt";
+            try
+            {
+                //Instantiate DocumentAssembler class
+                DocumentAssembler assembler = new DocumentAssembler();
+                //Call AssembleDocument to generate   Report in open document format
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetOrdersData(), "orders");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //ExEnd:TemplateSyntaxFormatting 
+        }
+        public static void OuterDocumentInsertion()
+        {
+            //ExStart:OuterDocumentInsertion
+            //Setting up source open document template
+            const String strDocumentTemplate = "Word Templates/OuterDocInsertion.odt";
+            //Setting up destination open document report 
+            const String strDocumentReport = "Word Reports/OuterDocInsertion Report.odt";
+            try
+            {
+                //Instantiate DocumentAssembler class
+                DocumentAssembler assembler = new DocumentAssembler();
+                //Call AssembleDocument to generate  Report in open document format
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetCustomerData(), "customer");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //ExEnd:OuterDocumentInsertion
+        }
+
+        /// <summary>
+        /// Generate barcodes
+        /// </summary>
+        /// <param name="strDocumentFormat"></param>
+        public static void AddBarCodes(string strDocumentFormat)
+        {
+            switch (strDocumentFormat)
+            {
+                case "document":
+                    //ExStart:AddBarCodesDocumentProcessingFormat
+                    //Setting up source open document template
+                    const String strDocumentTemplate = "Word Templates/Barcode.docx";
+                    //Setting up destination open document report 
+                    const String strDocumentReport = "Word Reports/Barcode.docx";
+                    try
+                    {
+                        //Instantiate DocumentAssembler class
+                        DocumentAssembler assembler = new DocumentAssembler();
+                        //Call AssembleDocument to generate   Report in open document format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetCustomerData(), "customer");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    //ExEnd:AddBarCodesDocumentProcessingFormat 
+                    break;
+
+                case "spreadsheet":
+                    //ExStart:AddBarCodesSpreadsheet
+                    //Setting up source open spreadsheet template
+                    const String strSpreadsheetTemplate = "Spreadsheet Templates/Barcode.xlsx";
+                    //Setting up destination open spreadsheet report 
+                    const String strSpreadsheetReport = "Spreadsheet Reports/Barcode.xlsx";
+                    try
+                    {
+                        //Instantiate DocumentAssembler class
+                        DocumentAssembler assembler = new DocumentAssembler();
+                        //Call AssembleDocument to generate  Report in open spreadsheet format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strSpreadsheetTemplate), CommonUtilities.SetDestinationDocument(strSpreadsheetReport), DataLayer.GetCustomerData(), "customer");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    //ExEnd:AddBarCodesSpreadsheet 
+                    break;
+
+                case "presentation":
+                    //ExStart:AddBarCodesPowerPoint
+                    //Setting up source open presentation template
+                    const String strPresentationTemplate = "Presentation Templates/Barcode.pptx";
+                    //Setting up destination open presentation report 
+                    const String strPresentationReport = "Presentation Reports/Barcode.pptx";
+                    try
+                    {
+                        //Instantiate DocumentAssembler class
+                        DocumentAssembler assembler = new DocumentAssembler();
+                        //Call AssembleDocument to generate  Report in open presentation format
+                        assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strPresentationTemplate), CommonUtilities.SetDestinationDocument(strPresentationReport), DataLayer.GetCustomerData(), "customer");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    //ExEnd:AddBarCodesPowerPoint 
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Update word processing documents fields while assembling 
+        /// </summary>
+        /// <param name="documentType"></param>
+        public static void UpdateWordDocFields(string documentType)
+        {
+
+            if (documentType == "document")
+            {
+                //ExStart:UpdateWordDocFields
+                //Setting up source document template
+                const String strDocumentTemplate = "Word Templates/Update_Field_XML.docx";
+                //Setting up destination document report 
+                const String strDocumentReport = "Word Reports/Update_Field_XML Report.docx";
+                DocumentAssembler assembler = new DocumentAssembler();
+                assembler.Options |= DocumentAssemblyOptions.UpdateFieldsAndFormulas;
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds");
+                //ExEnd:UpdateWordDocFields
+            }
+            else if (documentType == "spreadsheet")
+            {
+                //ExStart:updateformula
+                //Setting up source document template
+                const String strDocumentTemplate = "Spreadsheet Templates/Update-Fomula.xlsx";
+                //Setting up destination document report 
+                const String strDocumentReport = "Spreadsheet Reports/Update-Fomula Report.xlsx";
+                DocumentAssembler assembler = new DocumentAssembler();
+                assembler.Options |= DocumentAssemblyOptions.UpdateFieldsAndFormulas;
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds");
+                //ExEnd:updateformula
+            }
+            
+        }
+
+        /// <summary>
+        /// Support for Analogue of Microsoft Word NEXT Field
+        /// </summary>
+        public static void NextIteration()
+        {
+            //ExStart:nextiteration
+            //Setting up source document template
+            const String strDocumentTemplate = "Word Templates/Using Next.docx";
+            //Setting up destination document report
+            const String strDocumentReport = "Word Reports/Using Next Report.docx";
+            try
+            {
+                //Instantiate DocumentAssembler class
+                DocumentAssembler assembler = new DocumentAssembler();
+                //Call AssembleDocument to generate Report 
+                assembler.AssembleDocument(CommonUtilities.GetSourceDocument(strDocumentTemplate), CommonUtilities.SetDestinationDocument(strDocumentReport), DataLayer.GetAllDataFromXML(), "ds");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //ExEnd:nextiteration
+        }
+
     }
 }
