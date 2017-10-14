@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace GroupDocs.AssemblyExamples.BusinessLayer
@@ -16,8 +17,9 @@ namespace GroupDocs.AssemblyExamples.BusinessLayer
 
         public const string sourceFolderPath = "../../../../Data/Source/";
         public const string destinationFolderPath = "../../../../Data/Destination/";
+        public const string dataSourcesFolderPath = "../../../../Data/Data Sources/";
         //ExStart:LicenseFilePath
-        public const string licensePath = "../../GroupDocs.Assembly Product Family.lic";
+        public const string licensePath = "D:/Aspose Projects/License/GroupDocs.Total.lic";
         //ExEnd:LicenseFilePath
 
         #region DocumentDirectories
@@ -43,6 +45,16 @@ namespace GroupDocs.AssemblyExamples.BusinessLayer
             return Path.Combine(Path.GetFullPath(destinationFolderPath), outputFileName);
         }
 
+        /// <summary>
+        /// Takes source file name as argument. 
+        /// </summary>
+        /// <param name="sourceFileName">Source file name</param>
+        /// <returns>Returns explicit path by combining data source folder path and source file name.</returns>
+        public static string GetDataSourceDocument(string sourceFileName)
+        {
+            return Path.Combine(Path.GetFullPath(dataSourcesFolderPath), sourceFileName);
+        }
+
         //ExEnd:DocumentDirectories
         #endregion
 
@@ -57,6 +69,23 @@ namespace GroupDocs.AssemblyExamples.BusinessLayer
             lic.SetLicense(licensePath);
         }
         //ExEnd:ApplyLicense
+
+        //ExStart:metered licensing 
+        /// <summary>
+        /// provide metered licensing
+        /// </summary>
+        public static void MeteredLicensing()
+        {
+
+            // Set metered license public and private keys.
+            Metered metered = new Metered();
+            metered.SetMeteredKey("PublicKey", "PrivateKey");
+
+            // Ensure that the product is licensed.
+            License license = new License();
+            Debug.Assert(license.IsLicensed);
+        }
+        //ExEnd:metered licensing 
         #endregion
 
         #region ToADOTable
@@ -100,7 +129,15 @@ namespace GroupDocs.AssemblyExamples.BusinessLayer
             public delegate object[] CreateRowDelegate<T>(T t);
         }
         //ExEnd:ConvertToDataTable
+
+        public static class FileUtil
+        {
+            public static string GetBytesAsBase64(string path)
+            {
+                return Convert.ToBase64String(File.ReadAllBytes(path));
+            }
+        }
     }
-   
+
     //ExEnd:CommonUtilities
 }
