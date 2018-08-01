@@ -17,7 +17,7 @@ namespace GroupDocs.AssemblyExamples
              *  Applying product license
              *  Please uncomment the statement if you do have license.
              */
-            //CommonUtilities.ApplyLicense();
+            CommonUtilities.ApplyLicense();
             //ExEnd:ApplyingLicense
 
             #region Generating Bubble Chart Report
@@ -358,6 +358,52 @@ namespace GroupDocs.AssemblyExamples
 
             #endregion
 
+            #region Ability to remove selective chart series
+            GenerateReport.RemoveSelectiveChartSeries();
+            #endregion
+
+            #region Dynamic Chart Axis Title 
+            //Dynamic Chart Axis Title in Word Document 
+            //GenerateReport.DynamicChartAxisTitle();
+            //Dynamic Chart Axis Title in Presentation Document
+            //GenerateReport.DynamicChartAxisTitlePPt();
+            //Dynamic Chart Axis Title in Spreadsheet Document 
+            //GenerateReport.DynamicChartAxisTitleSpreadSheet();
+            //Dynamic Chart Axis Title in Presentation Document
+            GenerateReport.DynamicChartAxisTitleEmail();
+            #endregion
+
+            #region Dynamic Color 
+            //GenerateReport.DynamicColor();
+            // Sets colors of chart series dynamically based upon expressions wordprocessing document
+            //GenerateReport.DynamicChartSeriesColor();
+            // Sets colors of chart series dynamically based upon expressions spreadsheet document 
+            //GenerateReport.DynamicChartSeriesColorSpreadsheet();
+            // Sets colors of chart series dynamically based upon expressions presentation docuement
+            //GenerateReport.DynamicChartSeriesColorPresentation();
+            // Sets colors of chart series dynamically based upon expressions email docuement
+            GenerateReport.DynamicChartSeriesColorEmail();
+
+            // Sets colors of chart series point color dynamically based upon expressions wordprocessing document
+            //GenerateReport.DynamicChartSeriesPointColor();
+            // Sets colors of chart series point color dynamically based upon expressions spreadsheet document 
+            //GenerateReport.DynamicChartSeriesPointColorSpreadsheet();
+            // Sets colors of chart series point color dynamically based upon expressions prosentation document
+            //GenerateReport.DynamicChartSeriesPointColorPresentation();
+            // Sets colors of chart series point color dynamically based upon expressions email document
+            GenerateReport.DynamicChartSeriesPointColorEmail();
+            #endregion
+
+            #region Working With Table Row Data Bands
+            // Working With Table Row DataBands in Word Processing Document
+            //GenerateReport.WorkingWithTableRowDataBandsWord();
+            // Working With Table Row DataBands in SpreadSheet Document
+            //GenerateReport.WorkingWithTableRowDataBandsSpreadSheet();
+            // Working With Table Row DataBands in Presentation Document 
+            //GenerateReport.WorkingWithTableRowDataBandsPresentation();
+            // Working With Table Row DataBands in Email Format
+            //GenerateReport.WorkingWithTableRowDataBandsEmail();
+            #endregion
             //Update fields/formulas in word processing or spreadsheet documents
             //GenerateReport.UpdateWordDocFields("spreadsheet");
             //Use of Next keyword in template syntax
@@ -383,6 +429,9 @@ namespace GroupDocs.AssemblyExamples
             //GenerateReport.UseDocumentTableSetAsDataSource("Multiple Tables Data.docx", "Using Document Table Set as Data Source.pptx");
             //GenerateReport.DefiningDocumentTableRelations("Related Tables Data.xlsx", "Using Document Table Relations.docx");
             //GenerateReport.ChangingDocumentTableColumnType("Presentation Templates/Changing Document Table Column Type.pptx");
+
+            //GenerateReport.UsingStringAsTemplate();
+
             Console.WriteLine();
         }
     }
